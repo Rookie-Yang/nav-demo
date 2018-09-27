@@ -1,7 +1,7 @@
 var keys={
-  0: ['q','w','e','r','t','y','u','i','o','p'],
-  1: ['a','s','d','f','g','h','j','k','l'],
-  2: ['z','x','c','v','b','n','m'],
+  0: {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+  1: {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+  2: {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
   length:3
 }
 
@@ -20,30 +20,38 @@ if(hashInLocalStorage){
 }
 
 index = 0
-while(index++<keys.length){
-  div1 = document.createElement('div')
-  x.appendChild(div1)
-  index1 = 0
-  while(index1++<keys[index-1].length){
-    z = document.createElement('kbd')
-    z.textContent = keys[index-1][index1-1]
+while(index<keys['length']){
+  div = document.createElement('div')
+  main.appendChild(div)
+  div.className = 'row'
+  row = keys[index]
+  index2 = 0
+  
+  while(index2<row['length']){
+    kbd = document.createElement('kbd')
+    kbd.textContent = row[index2]
+    kbd.className = 'key'
     button = document.createElement('button')
     button.textContent = '编辑'
-    button.id = keys[index-1][index1-1]
-    button.onclick = function(keybord){
-      key = keybord.target.id
+    button.id = row[index2]
+    button.onclick = function(keyboard){
+      key = keyboard.target.id
       geturl = prompt('请输入网址')
       hash[key] = geturl
       localStorage.setItem('E2rom',JSON.stringify(hash))
+      console.log(hash)
     }
-    z.appendChild(button);
-    div1.appendChild(z)
+    kbd.appendChild(button)
+    div.appendChild(kbd)
+    index2++
   }
+  
+  index++
 }
 
-document.onkeypress = function(keybord){
-//  console.log(hash[keybord.key])
- // location.href =  'http://'+hash[keybord.key]
-  window.open('http://' + hash[keybord.key],'_blank')
- // console.log('http://' + hash[keybord.key])
+document.onkeypress = function(keyboard){
+//  console.log(hash[keyboard.key])
+ // location.href =  'http://'+hash[keyboard.key]
+  window.open('http://' + hash[keyboard.key],'_blank')
+ // console.log('http://' + hash[keyboard.key])
 }
