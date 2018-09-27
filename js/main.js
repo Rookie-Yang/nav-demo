@@ -29,11 +29,20 @@ while(index<keys['length']){
   
   while(index2<row['length']){
     kbd = document.createElement('kbd')
-    kbd.textContent = row[index2]
+    span = document.createElement('span')
+
+    span.textContent = row[index2]
+    span.className = 'text'
     kbd.className = 'key'
     button = document.createElement('button')
     button.textContent = '编辑'
     button.id = row[index2]
+    img = document.createElement('img')
+    if(hash[row[index2]]){
+      img.src = 'http://' + hash[row[index2]] + '/favicon.ico'
+    }else{
+      img.src = '//i.loli.net/2018/09/27/5bacd71fb25e6.png'
+    }
     button.onclick = function(keyboard){
       key = keyboard.target.id
       geturl = prompt('请输入网址')
@@ -41,6 +50,8 @@ while(index<keys['length']){
       localStorage.setItem('E2rom',JSON.stringify(hash))
       console.log(hash)
     }
+    kbd.appendChild(span)
+    kbd.appendChild(img)
     kbd.appendChild(button)
     div.appendChild(kbd)
     index2++

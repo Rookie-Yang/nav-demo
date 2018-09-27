@@ -25,6 +25,10 @@ kbd > button{
 kbd:hover > button{
   display:inline-block;
 }
+body{
+  background:grey url(../image/wall.jpg) no-repeat center center;
+  background-size: cover;
+}
 
 #main >div:nth-child(2){
   margin-left:-22px;
@@ -38,6 +42,11 @@ kbd:hover > button{
 }
 main {
   text-align: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+
 }
 
 .key{
@@ -48,12 +57,24 @@ main {
   color:#c5c5c5;
   border-radius: 6px;
   box-shadow:0 0 0 1px #1a1b1c,0 0 0 2px #1f2020,0 3px 0 2px #080808;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
   font-size:20px;
   font-family: Helvetica;
+  position: relative;
 }
+
+.key img{
+  width:16px;
+  height:16px;
+  position: absolute;
+  left:4px;
+  bottom:2px;
+}
+
+.wrapper{
+  background: rgba(255,255,255,0.2);
+    border-radius: 30px;
+}
+
 
 .row{
   margin:20px;
@@ -61,4 +82,10 @@ main {
 
 .row .key{
   margin:0 10px;
+}
+
+.key .text{
+  position: absolute;
+  left:4px;
+  top:2px;
 }
